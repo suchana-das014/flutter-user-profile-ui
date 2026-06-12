@@ -53,19 +53,13 @@ A modern, responsive **Profile Page UI built with Flutter**, featuring smooth in
 
 ## 📸 Screenshots
 
-> Add your screenshots here
-### Light Mode
 
 <p align="center">
-  <img width="720" alt="Aggimentt1" src="https://github.com/user-attachments/assets/fdd77eef-e38f-419a-a60e-9d5d2dcc5ba5" />
+  <img src="https://github.com/user-attachments/assets/fdd77eef-e38f-419a-a60e-9d5d2dcc5ba5"
+       width="250"/>
+  <img src="https://github.com/user-attachments/assets/7ae8f326-23b3-4771-8ab4-ee18211e8885"
+       width="250"/>
 </p>
-
-### Dark Mode
-
-<p align="center">
-  <img width="720" alt="Assignment1" src="https://github.com/user-attachments/assets/7ae8f326-23b3-4771-8ab4-ee18211e8885" />
-</p>
-
 
 ---
 
