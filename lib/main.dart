@@ -35,9 +35,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isFollowing = false;
   bool _isDarkMode = true;
 
+  // ── DESIGN TOKENS
   Color get _navy => _isDarkMode
       ? const Color(0xFF0D1B2A)
       : const Color(0xFFF3F6FA);
+  Color get _navyLight => _isDarkMode
+      ? const Color(0xFF162638)
+      : const Color(0xFFE2EAF4);
   Color get _card => _isDarkMode
       ? const Color(0xFF1A2E42)
       : const Color(0xFFFFFFFF);
@@ -48,38 +52,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Color get _textPri => _isDarkMode
       ? const Color(0xFFEAF0FB)
       : const Color(0xFF15233A);
-  // FIX 1: darker secondary text in light mode for bio & labels
   Color get _textSec => _isDarkMode
       ? const Color(0xFF8BA3BC)
       : const Color(0xFF374151);
   Color get _online => const Color(0xFF22C55E);
 
-  // FIX 2: button background for light mode
+  // Button bg/border — visible in both modes
   Color get _buttonCard => _isDarkMode
       ? _card
       : const Color(0xFFE8F0FE);
-  // FIX 3: button border for light mode
   Color get _buttonBorder => _isDarkMode
       ? _border
       : const Color(0xFF94A3B8);
 
-  void _toggleFollow() {
-    setState(() {
-      _isFollowing = !_isFollowing;
-    });
-  }
-
-  void _toggleThemeMode() {
-    setState(() {
-      _isDarkMode = !_isDarkMode;
-    });
-  }
+  void _toggleFollow() => setState(() => _isFollowing = !_isFollowing);
+  void _toggleThemeMode() => setState(() => _isDarkMode = !_isDarkMode);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _navy,
 
+      // ── AppBar
       appBar: AppBar(
         backgroundColor: _navy,
         elevation: 0,
@@ -125,10 +119,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // HERO: banner + avatar
+            // ── HERO:  banner +  avatar
             Stack(
               clipBehavior: Clip.none,
               children: [
+                // Gradient banner
                 Container(
                   height: 150,
                   width: double.infinity,
@@ -163,6 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ]),
                 ),
 
+                // Avatar
                 Positioned(
                   bottom: -52,
                   left: 0,
@@ -178,24 +174,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: _navy,
                             border: Border.all(color: _teal, width: 3),
                           ),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF0A3D62), Color(0xFF00C9A7)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: _navyLight,
+                            child: Text(
+                              'SD',
+                              style: TextStyle(
+                                color: _teal,
+                                fontSize: 28,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 1.5,
                               ),
-                            ),
-                            child: const Icon(
-                              Icons.person,
-                              color: Colors.white,
-                              size: 56,
                             ),
                           ),
                         ),
+                        // Online indicator
                         Container(
                           width: 20, height: 20,
                           decoration: BoxDecoration(
@@ -237,14 +230,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: _teal.withValues(alpha: 0.35), width: 1),
                     ),
                     child: Text(
-                      'Full Stack Web Developer • Flutter Enthusiast',
-                      textAlign: TextAlign.center,
+                      'Full-Stack Developer · SE Student',
                       style: TextStyle(
                         color: _teal,
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.3,
-                        height: 1.6,
                       ),
                     ),
                   ),
@@ -254,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 24),
 
-            // STATS ROW
+            //  STATS ROW
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -262,13 +253,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(child: _buildStatCard('42', 'Projects')),
                   const SizedBox(width: 12),
                   Expanded(child: _buildStatCard('1.8k', 'Followers')),
+                  const SizedBox(width: 12),
+                  Expanded(child: _buildStatCard('3 yrs', 'Experience')),
                 ],
               ),
             ),
 
             const SizedBox(height: 20),
 
-            // BUTTONS
+            // ACTION BUTTONS
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -286,10 +279,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ? Colors.transparent
                               : _teal,
                           borderRadius: BorderRadius.circular(14),
-                          border: Border.all(
-                            color: _teal,
-                            width: 1.5,
-                          ),
+                          border: Border.all(color: _teal, width: 1.5),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -316,7 +306,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Message button — FIX: visible bg + border in light mode
+                  // Message button
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -344,7 +334,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Call button — FIX: visible bg + border in light mode
+                  // Call button (icon-only)
                   Container(
                     width: 52, height: 52,
                     decoration: BoxDecoration(
@@ -353,8 +343,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       border: Border.all(color: _buttonBorder, width: 1),
                     ),
                     child: Center(
-                      child: Icon(Icons.call_outlined,
-                          color: _teal, size: 22),
+                      child: Icon(Icons.call_outlined, color: _teal, size: 22),
                     ),
                   ),
                 ],
@@ -363,16 +352,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 28),
 
-            // ABOUT ME SECTION
+            //  ABOUT ME
             _buildSection(
               label: 'About Me',
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Software Engineering student with a passion for building '
-                      'clean, user-friendly apps. Currently exploring Flutter & mobile development '
-                      'alongside my full-stack web skills in Laravel & Vue.js. I love turning '
-                      'ideas into real, working applications.',
+                  'Final-year Software Engineering student passionate about '
+                      'full-stack web development. I build scalable apps with '
+                      'Laravel & Vue.js, love clean UI, and am always exploring '
+                      'new tech — from AI/ML to mobile development.',
                   style: TextStyle(
                     color: _textSec,
                     fontSize: 14.5,
@@ -384,7 +373,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 24),
 
-            // PROFILE DETAILS
+            //  PROFILE DETAILS
             _buildSection(
               label: 'Details',
               child: Padding(
@@ -419,7 +408,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       _buildDetailRow(
                         Icons.groups_outlined,
                         'Batch',
-                        '2023-Summer',
+                        '2023 — Summer',
                         isLast: true,
                       ),
                     ],
