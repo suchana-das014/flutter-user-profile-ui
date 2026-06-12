@@ -55,10 +55,12 @@ A modern, responsive **Profile Page UI built with Flutter**, featuring smooth in
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/fdd77eef-e38f-419a-a60e-9d5d2dcc5ba5"
+   <img width="720" height="2412" alt="Assignment1_1" src="https://github.com/user-attachments/assets/6d4a331b-5188-44a4-91aa-740b4cbd3c2f" />
        width="250"/>
-  <img src="https://github.com/user-attachments/assets/7ae8f326-23b3-4771-8ab4-ee18211e8885"
-       width="250"/>
+ 
+  <img width="720" height="2405" alt="Assignment1_2" src="https://github.com/user-attachments/assets/dee090f7-0e46-44bc-a2b7-4c802671e5b2" />
+
+  width="250"/>
 </p>
 
 ---
