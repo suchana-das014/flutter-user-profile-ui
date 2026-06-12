@@ -1,17 +1,35 @@
-# profile_page
+# Flutter Profile UI
 
-A new Flutter project.
+A modern, dark-themed **Profile Page UI built with Flutter**, featuring smooth interactions, custom design tokens, and a clean Material 3 structure.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+* 🎨 Modern dark UI with custom design system
+* 🧑 Profile avatar with online indicator
+* 📊 Interactive stats cards (Projects, Followers)
+* 🔘 Animated Follow/Unfollow button using `setState`
+* 💬 Message and Call action buttons
+* 📄 Structured About Me section
+* 🧾 Detailed user information panel
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+---
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧠 Key Concepts Used
+
+* StatefulWidget (`setState` for follow toggle)
+* Custom design tokens (colors, spacing system)
+* Layout building with `Stack`, `Positioned`, `Column`, `Row`
+* Reusable widget helpers:
+
+  * `_buildStatCard`
+  * `_buildSection`
+  * `_buildDetailRow`
+* Material 3 theming (`ColorScheme.fromSeed`)
+* Smooth animations (`AnimatedContainer`)
+
+---
+
+This project is licensed under the MIT License.
