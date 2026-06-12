@@ -57,7 +57,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       : const Color(0xFF374151);
   Color get _online => const Color(0xFF22C55E);
 
-  // Button bg/border — visible in both modes
   Color get _buttonCard => _isDarkMode
       ? _card
       : const Color(0xFFE8F0FE);
@@ -73,7 +72,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: _navy,
 
-      // ── AppBar
       appBar: AppBar(
         backgroundColor: _navy,
         elevation: 0,
@@ -119,11 +117,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // ── HERO:  banner +  avatar
+            // ── HERO: banner + avatar
             Stack(
               clipBehavior: Clip.none,
               children: [
-                // Gradient banner
                 Container(
                   height: 150,
                   width: double.infinity,
@@ -158,7 +155,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ]),
                 ),
 
-                // Avatar
                 Positioned(
                   bottom: -52,
                   left: 0,
@@ -177,18 +173,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: CircleAvatar(
                             radius: 50,
                             backgroundColor: _navyLight,
-                            child: Text(
-                              'SD',
-                              style: TextStyle(
-                                color: _teal,
-                                fontSize: 28,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 1.5,
-                              ),
+                            // ── CHANGED: person icon instead of 'SD' text
+                            child: Icon(
+                              Icons.person_rounded,
+                              color: _teal,
+                              size: 52,
                             ),
                           ),
                         ),
-                        // Online indicator
                         Container(
                           width: 20, height: 20,
                           decoration: BoxDecoration(
@@ -230,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: _teal.withValues(alpha: 0.35), width: 1),
                     ),
                     child: Text(
-                      'Full-Stack Developer · SE Student',
+                      'Full-Stack Developer · Flutter enthusiast',
                       style: TextStyle(
                         color: _teal,
                         fontSize: 13,
@@ -245,7 +237,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 24),
 
-            //  STATS ROW
+            // STATS ROW
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -266,7 +258,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  // Follow button
                   Expanded(
                     child: GestureDetector(
                       onTap: _toggleFollow,
@@ -306,7 +297,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Message button
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -334,7 +324,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Call button (icon-only)
                   Container(
                     width: 52, height: 52,
                     decoration: BoxDecoration(
@@ -352,7 +341,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 28),
 
-            //  ABOUT ME
+            // ABOUT ME
             _buildSection(
               label: 'About Me',
               child: Padding(
@@ -373,7 +362,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 24),
 
-            //  PROFILE DETAILS
+            // PROFILE DETAILS
             _buildSection(
               label: 'Details',
               child: Padding(
